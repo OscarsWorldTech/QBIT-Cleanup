@@ -6,10 +6,14 @@ Usage:
   python3 qbit_cleanup.py --mode autobrr   # every 5 min
   python3 qbit_cleanup.py --mode aged      # every 24 hrs
 """
-
+import os
 import time
 import argparse
 from qbittorrentapi import Client, LoginFailed
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # === Parse CLI arguments ===
 parser = argparse.ArgumentParser(description="qBittorrent Cleanup Script")
@@ -22,10 +26,10 @@ parser.add_argument(
 args = parser.parse_args()
 
 # === Configuration ===
-QBT_HOST = "192.168.2.200"
-QBT_PORT = 8080
-QBT_USERNAME = "bryce.welk"
-QBT_PASSWORD = "G@mer9825001"  # <-- replace with your real password
+QBT_HOST = os.getenv("QBT_HOST")
+QBT_PORT = int(os.getenv("QBT_PORT"))
+QBT_USERNAME = os.getenv("QBT_USERNAME")
+QBT_PASSWORD = os.getenv("QBT_PASSWORD")  # <-- replace with your real password
 
 DAYS_THRESHOLD = 15
 SIZE_THRESHOLD_GB = 5
