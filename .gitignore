@@ -5,3 +5,4 @@
 __pycache__/
 *.pyc
 cleanup_orphaned_crossseeds.py
+qbit_cleanup.py.backup
